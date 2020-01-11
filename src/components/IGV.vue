@@ -72,9 +72,9 @@ export default {
             console.log(siteInfoArr)
             this.genome = siteInfoArr[0]
             var chrom = siteInfoArr[1]
-            var siteStart = Number(siteInfoArr[2]) - 250
+            var siteStart = Number(siteInfoArr[2]) - 1000
             console.log(siteStart)
-            var siteEnd = Number(siteInfoArr[2]) + 250
+            var siteEnd = Number(siteInfoArr[2]) + 1000
             console.log(siteEnd)
             var locusArea = chrom + ":" + siteStart + "-" + siteEnd
 
