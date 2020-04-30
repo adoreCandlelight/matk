@@ -20,7 +20,7 @@
     "highcharts": "^8.0.0",
     "igv": "^2.3.3",
     "iview": "^3.4.0-rc.2",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "node-sass": "^4.11.0",
     "qs": "^6.7.0",
     "sass-loader": "^7.1.0",
