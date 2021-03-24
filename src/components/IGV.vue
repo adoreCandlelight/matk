@@ -57,7 +57,7 @@ export default {
             var config = {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             };
-            axios.post("./php/getSingleSite.php", submitData, config).then((res)=>{
+            axios.post("/php/getSingleSite.php", submitData, config).then((res)=>{
                 // console.log(res)
                 this.getigv()
             }) .catch((err)=>{

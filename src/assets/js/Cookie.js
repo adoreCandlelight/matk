@@ -25,7 +25,7 @@ function checkCookie(){
 		// console.log('nothing!!!')
 		
 		//   获取username
-		axios.get("./php/get_cname.php").then(
+		axios.get("/php/get_cname.php").then(
 			(res)=>{
 				uid = res.data.cname 
 				// console.log(uid);

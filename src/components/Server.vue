@@ -279,7 +279,7 @@ export default {
             let config = {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }
-            axios.post('./php/getExample.php', formValue, config).then((res)=>{
+            axios.post('/php/getExample.php', formValue, config).then((res)=>{
                 this.loadingExample = false
                 this.example = res.data
                 this.removeFile()
@@ -389,7 +389,7 @@ export default {
                 }
                 var that = this
                 axios({
-                    url: "./php/reciveFile.php",
+                    url: "/php/reciveFile.php",
                     method: "post",
                     data: formfile,
                     headers:  { 'Content-Type': 'multipart/form-data' },
@@ -483,7 +483,7 @@ export default {
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     }
                 
-                axios.post('./php/user_upload.php', formdata, config).then((res)=>{
+                axios.post('/php/user_upload.php', formdata, config).then((res)=>{
                     // console.log(res)
                     this.checkLog()
                     // 上传成功后请求分析，并且更新响应栏状态
@@ -501,7 +501,7 @@ export default {
                         }
                         console.log(analysisValues)
                         var analysidata = qs.stringify(analysisValues, {arrayFormat: 'repeat'})
-                        axios.post('./php/run_jar_python.php', analysidata, config).then((res)=>{
+                        axios.post('/php/run_jar_python.php', analysidata, config).then((res)=>{
                             //console.log(res)
                         }) .catch((err)=>{
                             console.log(err)
@@ -522,7 +522,7 @@ export default {
             let config = {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }
-            axios.post('./php/check_log_db.php', checkdata, config).then((res)=>{
+            axios.post('/php/check_log_db.php', checkdata, config).then((res)=>{
                 // console.log(res)
                 this.tableSeen = false
                 // if (this.tableData.length !=0) {
@@ -547,7 +547,7 @@ export default {
                     let config = {
                             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                         }
-                    axios.post('./php/check_log_db.php',checkdata, config).then((res)=>{
+                    axios.post('/php/check_log_db.php',checkdata, config).then((res)=>{
                         // console.log(res)
                         
                         if (res.data.task_status.length != 0) {
@@ -578,7 +578,7 @@ export default {
             let config = {
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 }
-            axios.post('./php/del_history.php', delData, config).then((res)=>{}).catch((err)=>{
+            axios.post('/php/del_history.php', delData, config).then((res)=>{}).catch((err)=>{
                 console.log(err)
             })
         },

@@ -13,11 +13,11 @@ module.exports = {
     proxyTable: {
       // 跨域新增——————————————————————
       
-      '/api': {
+      '/': {
         target: 'http://matk.renlab.org/',
         changeOrigin: true,
         pathRewrite: {
-            '^/api': 'api',
+            '^/': '',
         }
       }
       // 跨域新增——————————————————————

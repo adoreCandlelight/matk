@@ -284,7 +284,7 @@ export default {
       var qs = require('qs')
       var userinfo = { username: uid, upload_time: this.submittime }
       var resultdata = qs.stringify(userinfo, {arrayFormat: 'repeat'})
-      axios.post('./php/get_result.php', resultdata, config).then((res)=>{
+      axios.post('/php/get_result.php', resultdata, config).then((res)=>{
         console.log(res)
         this.loadingSeen = false
         this.result_link = res.data.result_link
@@ -330,7 +330,7 @@ export default {
 
           // console.log('it is bed result')
           // 如果为bed格式注释则继续，请求进行绘图分析
-          axios.post('./php/get_density.php', resultdata, config).then((res)=>{
+          axios.post('/php/get_density.php', resultdata, config).then((res)=>{
             // console.log(res)
             this.pre_density_data = res.data.pre_density_arr
             this.peak_density_data = res.data.peak_density_arr

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="footArea">
-             <p class="footer">MATK &copy; 2019 The Ren Lab. All Rights Reserved</p>
+             <p class="footer">MATK &copy; {{curYear}} The Ren Lab. All Rights Reserved</p>
         </div>
         
     </div>
@@ -9,7 +9,20 @@
 
 <script>
 export default {
-    
+    data() {
+        return {
+            curYear: 2020
+        }
+    },
+    methods: {
+        SetCurYear() {
+            let date = new Date();
+            this.curYear = date.getFullYear();
+        }
+    },
+    mounted() {
+        this.SetCurYear();
+    }
 }
 </script>
 
