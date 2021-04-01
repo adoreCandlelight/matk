@@ -1,7 +1,7 @@
 import echarts from 'echarts';
 
 function enrichPieChart(pieID, pieTitle, legendList, pieDataList){
-    var pieChart = echarts.init(document.getElementById(pieID));
+    var pieChart = echarts.init(document.getElementById(pieID), null, {renderer: 'svg'});
 
     // 配置图表的配置项和数据
     var option = {
@@ -10,10 +10,9 @@ function enrichPieChart(pieID, pieTitle, legendList, pieDataList){
             x: 'center',
             textStyle: {
                 fontFamily: 'Arial',
-                fontSize: 28,
+                fontSize: 22,
                 fontWight: 'bold'
             }
-
         },
         tooltip : {
             trigger: 'item',
@@ -25,7 +24,8 @@ function enrichPieChart(pieID, pieTitle, legendList, pieDataList){
             top: '100',
             textStyle: {
                 fontFamily: 'Arial',
-                fontSize: 18
+                fontSize: 16,
+                fontWight: "bold"
             },
             data: legendList
         },
@@ -36,8 +36,9 @@ function enrichPieChart(pieID, pieTitle, legendList, pieDataList){
             feature: {
               saveAsImage: {
                 show: true,
+                type: "svg",
                 excludeComponents: ['toolbox'],
-                title: 'save as png',
+                title: 'save as svg',
                 pixelRatio: 2
               }
             }
@@ -53,7 +54,8 @@ function enrichPieChart(pieID, pieTitle, legendList, pieDataList){
                     show: true,
                     formatter: '{d}%',
                     fontFamily: 'Arial',
-                    fontSize: 18 
+                    fontSize: 16,
+                    fontWeight: "bold"
                 },
                 itemStyle: {
                     emphasis: {
@@ -71,7 +73,7 @@ function enrichPieChart(pieID, pieTitle, legendList, pieDataList){
 }
 
 function enrichBar(barID, barTitle, xAxisNameList, ratioList, pvalObj) {
-    var barChart = echarts.init(document.getElementById(barID));
+    var barChart = echarts.init(document.getElementById(barID), null, {renderer: 'svg'});
     
     var option = {
         title: {
@@ -79,7 +81,7 @@ function enrichBar(barID, barTitle, xAxisNameList, ratioList, pvalObj) {
             x: 'center',
             textStyle: {
                 fontFamily: 'Arial',
-                fontSize: 28,
+                fontSize: 22,
                 fontWeight: 'bold'
             }
         },
@@ -93,7 +95,7 @@ function enrichBar(barID, barTitle, xAxisNameList, ratioList, pvalObj) {
         grid: {
             top: 80
         },
-        color: ['#3398DB'],
+        color: ['#5470c6'],
         toolbox: {
             show: true,
             x: 'right',
@@ -101,8 +103,9 @@ function enrichBar(barID, barTitle, xAxisNameList, ratioList, pvalObj) {
             feature: {
               saveAsImage: {
                 show: true,
+                type: "svg",
                 excludeComponents: ['toolbox'],
-                title: 'save as png',
+                title: 'save as svg',
                 pixelRatio: 2
               }
             }
@@ -117,9 +120,9 @@ function enrichBar(barID, barTitle, xAxisNameList, ratioList, pvalObj) {
             // ["5'-UTR",  "CDS", "stop codon", "3'-UTR"]
             data: xAxisNameList,
             axisLabel: {
+                fontSize: 14,
                 fontFamily:'Arial',
-                fontSize: 16,
-                fontWeight: '400',
+                fontWeight: 'bold',
                 interval: 0
             }
         },
@@ -132,15 +135,15 @@ function enrichBar(barID, barTitle, xAxisNameList, ratioList, pvalObj) {
             nameLocation: 'middle',
             nameGap: 28,
             nameTextStyle: {
-                fontSize: 23,
+                fontSize: 20,
                 fontFamily: 'Arial',
                 fontWeight: 'bold',
                 // padding: [0, 0, 0, 30]
             },
             axisLabel: {
                 fontFamily:'Arial',
-                fontSize: 16,
-                fontWeight: '400',
+                fontSize: 14,
+                fontWeight: 'bold',
                 interval: 0
             }
         },

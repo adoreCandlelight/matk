@@ -159,7 +159,7 @@
                             <tr v-if="tableSeen">
                                 <td class="noData" colspan="4">No Data</td>
                             </tr>
-                            <tr v-for="(item, key) in tableData">
+                            <tr v-for="(item, key) in tableData" :key="key">
                                 <td class="resultItem">{{item.submittime}}</td>
                                 <td class="resultItem">{{item.status}}</td>
                                 <td class="resultItem" v-if="item.status == 'Running'"><i class="el-icon-loading"></i></td>

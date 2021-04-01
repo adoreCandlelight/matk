@@ -151,12 +151,12 @@
           </div>
           <div class="densityArea" v-loading="densityLoading">
             <div id="density" style="height: 450px; width: 660px;"></div>
-            <canvas id="densityCanvas" style="height: 200px; width: 660px;"></canvas>
+            <!-- <canvas id="densityCanvas" style="height: 200px; width: 660px;"></canvas>
             <div class="density_label" v-if="densitySeen">
               <span class="utr5">5'-UTR</span>
               <span class="cds">CDS</span>
               <span class="utr3">3'-UTR</span>
-            </div>  
+            </div>   -->
           </div>
         </el-card>
         <!-- m6a 预测位点 sequence logo -->
@@ -164,7 +164,7 @@
           <div class="secondTitle">
             <h2><i class="el-icon-location-outline"></i>&nbsp;Sequence Logo</h2>
           </div>
-          <div class="seqlogo" v-loading="seqlogoLoading">
+          <div class="seqlogo" v-loading="seqLogoLoading">
             <img id="logo_png" :src='sites_link' alt="">
           </div>
         </el-card> 
@@ -175,29 +175,13 @@
           </div>
           
           <div class="enrich" v-loading="enrichLoading">
-          <!-- <div> -->
             <div class="pieChart">
-              <div id="distributionPie" style="height: 450px;"></div>  
+              <div id="distributionPie" style="height: 450px;width: 660px;"></div>  
             </div>
-            <!-- <div class="barChart">
-              <div id="distributionBar" style="height: 450px; width: 510px;"></div> 
-            </div> -->
             <div class="pieChart">
-              <div id="exonDistribution" style="height: 450px;"></div> 
+              <div id="exonDistribution" style="height: 450px;width: 660px;"></div> 
             </div>
           </div>
-            <!-- <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6">
-                <div id="distributionPie" style="height: 450px;"></div>
-              </div>
-              <div class="col-lg-6 col-md-6 col-sm-6">
-                <div id="distributionBar" style="height: 450px; width:510px;"></div>
-              </div>
-            </div>
-
-            <div id="exonDistribution" style="height: 450px;"></div>
-            
-          </div> -->
         </el-card>
         <el-card class="card">
           <div class="secondTitle">
@@ -230,7 +214,7 @@ export default {
       fastaLoading: true,
       bedTableLoading: true,
       densityLoading: true,
-      seqlogoLoding: true,
+      seqLogoLoading: true,
       enrichLoading: true,
 
       // cname: '',
@@ -259,12 +243,12 @@ export default {
       enrichRatioArr : [],
       pValueObj : {},
       exonIntroArr : [],
-      pieTitle: 'the distribution of m6A sites in exonic',
+      pieTitle: 'Distribution of m6A sites in exon',
       legendList: ["stop codon", "3'-UTR", "CDS", "5'-UTR"],
-      exonLegend: ["coding exonic", "coding intronic", "noncoding exonic", "noncoding intronic", "intergenic"],
+      exonLegend: ["coding exon", "coding intron", "noncoding exon", "noncoding intron", "intergenic"],
       xAXisList: ["5'-UTR",  "CDS", "stop codon", "3'-UTR"],
-      barTitle: 'the enrichment ratio of m6A sites',
-      exonDistributionTitle: 'the distribution of m6A sites in chromosome'
+      barTitle: 'Enrichment ratio of m6A sites',
+      exonDistributionTitle: 'Distribution of m6A sites in chromosome'
 
     }
   },
@@ -285,7 +269,7 @@ export default {
       var userinfo = { username: uid, upload_time: this.submittime }
       var resultdata = qs.stringify(userinfo, {arrayFormat: 'repeat'})
       axios.post('/php/get_result.php', resultdata, config).then((res)=>{
-        console.log(res)
+        // console.log(res)
         this.loadingSeen = false
         this.result_link = res.data.result_link
         this.analysis_format = res.data.format
@@ -303,17 +287,17 @@ export default {
           this.speice_link = res.data.speice_link
           this.sites_link = res.data.sites_png_url
           
-          this.seqlogoLoding = false
+          this.seqLogoLoading = false
 
           this.distributionArr.push({"value": res.data.distribution["stop_codon"], "name": "stop codon"});
           this.distributionArr.push({"value": res.data.distribution["3'-UTR"], "name": "3'-UTR"});  
           this.distributionArr.push({"value": res.data.distribution["CDS"], "name": "CDS"});  
           this.distributionArr.push({"value": res.data.distribution["5'-UTR"], "name": "5'-UTR"});
 
-          this.exonIntroArr.push({"value": res.data.exon_intro_count["codingExonCount"], "name": "coding exonic"})
-          this.exonIntroArr.push({"value": res.data.exon_intro_count["codingIntroCount"], "name": "coding intronic"})
-          this.exonIntroArr.push({"value": res.data.exon_intro_count["noncodingExonCount"], "name": "noncoding exonic"})
-          this.exonIntroArr.push({"value": res.data.exon_intro_count["noncodingIntroCount"], "name": "noncoding intronic"})
+          this.exonIntroArr.push({"value": res.data.exon_intro_count["codingExonCount"], "name": "coding exon"})
+          this.exonIntroArr.push({"value": res.data.exon_intro_count["codingIntroCount"], "name": "coding intron"})
+          this.exonIntroArr.push({"value": res.data.exon_intro_count["noncodingExonCount"], "name": "noncoding exon"})
+          this.exonIntroArr.push({"value": res.data.exon_intro_count["noncodingIntroCount"], "name": "noncoding intron"})
           this.exonIntroArr.push({"value": res.data.exon_intro_count["intergenicCount"], "name": "intergenic"})
           
           this.pValueObj = res.data.enrichPvalue
@@ -351,7 +335,7 @@ export default {
 			this.currpage = cpage;
     },
     densityEchart() {
-      var getDensity = this.$echarts.init(document.getElementById('density'));
+      var getDensity = this.$echarts.init(document.getElementById('density'), null, {renderer: 'svg'});
         var option = {
             title: {
               top: 0,
@@ -359,7 +343,7 @@ export default {
               x: 'center',
               textStyle: {
                 fontFamily: 'Arial',
-                fontSize: 28,
+                fontSize: 22,
                 fontWeight: 'bold'
               }
             },
@@ -375,15 +359,15 @@ export default {
             },
             grid: {
               top: 85,
-              left: 90
+              left: 100
             },
             legend: {
                 // orient: 'horizontal',
                 orient: 'vertical',
-                left: '16%',
+                left: 120,
                 top: 35,
                 textStyle: {
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: 'bold',
                 fontFamily:'Arial',
               },
@@ -396,8 +380,9 @@ export default {
                 feature: {
                   saveAsImage: {
                     show: true,
+                    type: "svg",
                     excludeComponents: ['toolbox'],
-                    title: 'save as png',
+                    title: 'save as svg',
                     pixelRatio: 2
                   }
                 }
@@ -420,14 +405,14 @@ export default {
                 nameLocation: 'middle',
                 nameGap: 52,
                 nameTextStyle: {
-                  fontSize: 23,
+                  fontSize: 20,
                   fontWeight: 'bold',
                   fontFamily:'Arial'
                 },
                 axisLabel: {
-                  fontSize: 16,
-                  fontFamily:'Arial'
-                  // fontWeight: 'bold'
+                  fontSize: 14,
+                  fontFamily:'Arial',
+                  fontWeight: 'bold'
                 },
                 splitLine: {
                     show: false
@@ -469,7 +454,72 @@ export default {
             ]
           }
         getDensity.setOption(option);
-        this.densityMark()
+        // this.densityMark()
+        this.setDensityMark();
+    },
+    setDensityMark() {
+      let svg = document.getElementById("density").querySelector("svg");
+      let group = this.createSvgElement("g");
+      let rect1Attr = {
+        x: 100,
+        y: 410,
+        height: 10, 
+        width: 165,
+        style: "fill:#000000;"
+      };
+      let rect2Attr = {
+        x: 265,
+        y: 405,
+        height: 20, 
+        width: 165,
+        style: "fill:#909399;"
+      };
+      let rect3Attr = {
+        x: 430,
+        y: 410,
+        height: 10, 
+        width: 164,
+        style: "fill:#000000;"
+      };
+      let rect1 = this.createSvgElement("rect", rect1Attr);
+      let rect2 = this.createSvgElement("rect", rect2Attr);
+      let rect3 = this.createSvgElement("rect", rect3Attr);
+      let utr5Attr = {
+        x: 182.5,
+        y: 445,
+        style: "font-size:20;font-family:Arial;font-weight:bold;text-anchor:middle;"
+      };
+      let cdsAttr = {
+        x: 347.5,
+        y: 445,
+        style: "font-size:20;font-family:Arial;font-weight:bold;text-anchor:middle;"
+      };
+      let utr3Attr = {
+        x: 512.5,
+        y: 445,
+        style: "font-size:20;font-family:Arial;font-weight:bold;text-anchor:middle;"
+      }
+      group.appendChild(rect1);
+      group.appendChild(rect2);
+      group.appendChild(rect3);
+      let utr5 = this.createSvgElement("text", utr5Attr);
+      utr5.textContent = "5'-UTR";
+      let cds = this.createSvgElement("text", cdsAttr);
+      cds.textContent = "CDS";
+      let utr3 = this.createSvgElement("text", utr3Attr);
+      utr3.textContent = "3'-UTR";
+      group.appendChild(utr5);
+      group.appendChild(cds);
+      group.appendChild(utr3);
+      svg.appendChild(group);
+    },
+    createSvgElement(tag, attrObj = {}) {
+      var svgTag = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const key in attrObj) {
+        // Cycle setting attributes
+        svgTag.setAttribute(key, attrObj[key]);
+      }
+      return svgTag;
     },
     densityMark() {
         var mark = document.getElementById("densityCanvas")
@@ -543,7 +593,7 @@ export default {
 .title-link {
   font-size: 2.8rem;
   text-decoration: none;
-  color:deepskyblue;
+  color:#4b6386;
 };
 #bedResult {
   display: none;
@@ -557,7 +607,7 @@ export default {
   height: 600px;
 }
 .secondTitle {
-  color: deepskyblue;
+  color: #4b6386;
 };
 .tableOption {
   margin: 30px 5.5%;
@@ -573,15 +623,15 @@ export default {
 }
 .sumtable thead tr th {
   vertical-align: middle;
-  font-size: 2rem;
+  font-size: 20px;
   // font-weight: bold;
-  color:dimgray;
+  color:#3b3b3b;
   text-align: center;
 }
 .sumtable tbody tr td {
   vertical-align: middle;
   // font-weight: 400;
-  font-size: 17px;
+  font-size: 16px;
 }
 .motifArea {
   color: red;
@@ -613,10 +663,12 @@ export default {
   margin: 10px;
 }
 #density {
-  margin: 15px 22% 0 22%;
+  // margin: 15px 22% 0 22%;
+  margin: 0 auto;
 }
-#densityCanvas {
-  margin-left: 22%;
+#densityCanvas, #density, #distributionPie, #exonDistribution, #distributionBar {
+  // margin-left: 22%;
+  margin: 0 auto;
 }
 .density_label {
     // background-color: blue;
@@ -637,26 +689,28 @@ export default {
 .utr3 {
     padding-left: 105px;
 }
-.seqlogo {
-    margin-left: 18%;
-}
-.pieChart {
-    margin: 10px 18% 25px 18%;
-}
+// .seqlogo {
+//     margin-left: 18%;
+// }
+// .pieChart {
+//     margin: 10px 18% 25px 18%;
+// }
 .barChart {
     margin: 16px 26%;
 }
 #logo_png {
-  width: 750px;
-  height: 450px;
+  // width: 750px;
+  // height: 450px;
+  max-width: 600px;;
+  height: auto;
+  margin: 0 auto;
 }
-#distributionRatio {
-  margin: 0 8%;
-}
-#distributionBar {
-  margin-left: 10%;
-}
-#exonDistribution {
-  margin-left: 4%; 
+
+// #distributionBar {
+//   margin-left: 10%;
+// }
+
+.densityArea, .seqlogo, .pieChart, .barChart {
+  text-align: center;
 }
 </style>

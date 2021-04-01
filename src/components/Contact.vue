@@ -3,14 +3,14 @@
         <div>
             <v-header></v-header>
         </div>
-        <div id="container" class="container" style="margin-top:180px;">
+        <div id="container" class="container" style="margin-top:10%;">
             <div class="col-xs-12">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h1 id="h1" class="page-header" style="color:#0082c9;font-size:40px;"><b>Person to Contact</b></h1>
+                        <h1 id="h1" class="page-header" style=""><b>※ Person to Contact</b></h1>
                         <p style="font-size:18px;margin-bottom:50px;">If you have any questions or comments, please contact us.</p>
                         <div class="contact" style="border-left:7px solid #009944;padding-left:3%">
-                            <p><span class="name"><a href="https://www.researchgate.net/profile/Jian_Ren2/publications" target="_blank"><h2>Jian Ren</h2></a> </span><a href="mailto:renjian.sysu@gmail.com" style="font-size:18px;">renjian.sysu@gmail.com</a></p>
+                            <p><span class="name"><a href="https://www.researchgate.net/profile/Jian_Ren2/publications" target="_blank"><h2>Jian Ren</h2></a> </span><a href="mailto:renjian@sysucc.org.cn" style="font-size:18px;">renjian@sysucc.org.cn</a></p>
                             <i style="font-weight:bold;font-size:18px;">Professor of Bioinformatics</i>
                             <p style="font-size:18px;">School of Life Sciences, Cancer Center, Sun Yat-sen University, Guangzhou 510060, China</p>
                             <br>
@@ -50,5 +50,9 @@ export default {
     position: absolute;
     bottom: 0;
     width:100%;
+}
+.page-header {
+    color:#0082c9;
+    font-size:35px;
 }
 </style>

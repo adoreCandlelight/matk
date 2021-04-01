@@ -28,11 +28,11 @@ export default {
 
 <style lang="scss" scoped>
 .footArea {
-    background-color:lightgoldenrodyellow;
+    background-color:#a9a9a9;
 }
 .footer {
     text-align: center;
-    color: #777777;
+    color:#f0f0ff;
     font-size: 18px;
     padding: 6px 0;
 }

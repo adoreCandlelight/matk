@@ -81,36 +81,36 @@ export default {
             this.timeDir = siteInfo.split("_")[3].replace(/[:\s]/g,"_")
 
             if (this.genome == 'hg19') {
-                var gtfurl = 'http://matk.renlab.org/annotation/Homo_sapiens.GRCh37.sorted.gtf.gz'
+                var gtfurl = '/annotation/Homo_sapiens.GRCh37.sorted.gtf.gz'
                 var annotation_name = 'Homo_sapiens.GRCh37(gtf)'
-                var fastaurl = 'http://matk.renlab.org/genome_fasta/Homo_sapiens.GRCh37.chr.fa'
-                var fastaurl_index = 'http://matk.renlab.org/genome_fasta/Homo_sapiens.GRCh37.chr.fa.fai'
-                var cytoband_url = 'http://matk.renlab.org/genome_fasta/hg19_cytoBandIdeo.txt'
+                var fastaurl = '/genome_fasta/Homo_sapiens.GRCh37.chr.fa'
+                var fastaurl_index = '/genome_fasta/Homo_sapiens.GRCh37.chr.fa.fai'
+                var cytoband_url = '/genome_fasta/hg19_cytoBandIdeo.txt'
             } else if (this.genome == 'hg38') {
-                var gtfurl = 'http://newnewmatk.renlab.org/annotation/Homo_sapiens.GRCh38.chr.sorted.gtf.gz'
+                var gtfurl = '/annotation/Homo_sapiens.GRCh38.chr.sorted.gtf.gz'
                  
                 var annotation_name = 'Homo_sapiens.GRCh38(gtf)'
-                var fastaurl = 'http://newnewmatk.renlab.org/genome_fasta/Homo_sapiens.GRCh38.fa'
-                var fastaurl_index = 'http://newnewmatk.renlab.org/genome_fasta/Homo_sapiens.GRCh38.fa.fai'
-                var cytoband_url = 'http://newnewmatk.renlab.org/genome_fasta/hg38_cytoBandIdeo.txt.gz'
+                var fastaurl = '/genome_fasta/Homo_sapiens.GRCh38.fa'
+                var fastaurl_index = '/genome_fasta/Homo_sapiens.GRCh38.fa.fai'
+                var cytoband_url = '/genome_fasta/hg38_cytoBandIdeo.txt.gz'
             } else if (this.genome == 'mm10') {
-                var gtfurl = 'http://matk.renlab.org/annotation/Mus_musculus.GRCm38.sorted.gtf.gz'
+                var gtfurl = '/annotation/Mus_musculus.GRCm38.sorted.gtf.gz'
                 var annotation_name = 'Mus_musculus.GRCm38(gtf)'
-                var fastaurl = 'http://matk.renlab.org/genome_fasta/Mus_musculus.GRCm38.fa'
-                var fastaurl_index = 'http://matk.renlab.org/genome_fasta/Mus_musculus.GRCm38.fa.fai'
-                var cytoband_url = 'http://matk.renlab.org/genome_fasta/mm10_cytoBandIdeo.txt.gz'
+                var fastaurl = '/genome_fasta/Mus_musculus.GRCm38.fa'
+                var fastaurl_index = '/genome_fasta/Mus_musculus.GRCm38.fa.fai'
+                var cytoband_url = '/genome_fasta/mm10_cytoBandIdeo.txt.gz'
             } else {
-                var gtfurl = 'http://matk.renlab.org/annotation/Mus_musculus.NCBIM37.sorted.gtf.gz'
+                var gtfurl = '/annotation/Mus_musculus.NCBIM37.sorted.gtf.gz'
                 var annotation_name = 'Mus_musculus.NCBIM37(gtf)'
-                var fastaurl = 'http://matk.renlab.org/genome_fasta/Mus_musculus.NCBIM37.61.fa'
-                var fastaurl_index = 'http://matk.renlab.org/genome_fasta/Mus_musculus.NCBIM37.61.fa.fai'
-                var cytoband_url = 'http://matk.renlab.org/genome_fasta/mm9_cytoBandIdeo.txt.gz'
+                var fastaurl = '/genome_fasta/Mus_musculus.NCBIM37.61.fa'
+                var fastaurl_index = '/genome_fasta/Mus_musculus.NCBIM37.61.fa.fai'
+                var cytoband_url = '/genome_fasta/mm9_cytoBandIdeo.txt.gz'
             }
 
             var index_gtf_url = gtfurl + '.tbi'
             var igvDiv = document.getElementById("igvArea");
-            // var singleSiteBedFile = "http://newnewmatk.renlab.org/userfiles/" + this.uid + "/" + this.timeDir + "/singleSiteFile/" + this.chrom + "_" + this.chrStart + "_" + this.chrStop + ".bed"
-            var baseDir = "http://newnewmatk.renlab.org/userfiles/" + this.uid + "/" + this.timeDir
+            // var singleSiteBedFile = "/userfiles/" + this.uid + "/" + this.timeDir + "/singleSiteFile/" + this.chrom + "_" + this.chrStart + "_" + this.chrStop + ".bed"
+            var baseDir = "/userfiles/" + this.uid + "/" + this.timeDir
             var options = {
                 genome: {
                     "id": this.genome,

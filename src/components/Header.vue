@@ -119,12 +119,12 @@ export default {
 // }
 .navbarTitle {
 	// font-size: 4.5rem;
-	font-size: 50px;
+	font-size: 40px;
 	vertical-align: bottom;
 }
 .navItem {
 	// font-size: 3.3rem;
-	font-size: 30px;
+	font-size: 22px;
 	color:cornsilk;	
 };
 .navLink {
